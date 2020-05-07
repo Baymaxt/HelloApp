@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [
+from login import views
 
+urlpatterns = [
+    path('register/', views.UserRegisterView.as_view, name='register'),
 ]
