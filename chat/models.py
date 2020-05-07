@@ -198,6 +198,7 @@ class TransactionDetails(models.Model):
 
 class Users(models.Model):
     uid = models.CharField(primary_key=True, max_length=20)
+    password = models.CharField(max_length=20, null=False)
     username = models.CharField(max_length=50)
     age = models.IntegerField(blank=True, null=True)
     gender = models.IntegerField()
