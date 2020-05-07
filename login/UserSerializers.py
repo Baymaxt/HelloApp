@@ -3,7 +3,13 @@ from rest_framework import serializers
 from login.models import Users
 
 
-class UserRegisterSerializer(serializers.Serializer):
+class UsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = '__all__'
+
+
+class UsersRegisterSerializer(serializers.Serializer):
     uid = serializers.CharField(required=True, max_length=20)
     password = serializers.CharField(min_length=6, max_length=20,
                                      error_messages={
