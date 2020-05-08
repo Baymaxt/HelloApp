@@ -1,17 +1,20 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
 
 from login.UserSerializers import UsersRegisterSerializer
 from login.models import Users
+from login.verifycode import vc
 
 
 class UserRegisterView(CreateAPIView, ListAPIView):
     """
-    post: 进行注册
-    get: 获取验证码
+    post:
+    进行注册
+    get:
+    获取验证码
     """
     queryset = Users.objects.all()
     serializer_class = UsersRegisterSerializer
@@ -34,7 +37,12 @@ class UserRegisterView(CreateAPIView, ListAPIView):
         })
 
     def get(self, request, *args, **kwargs):
+        verifyimg = vc.generate()
         return Response({
+            'data': {
+                'img': verifyimg,
+                'verifycode': vc.code,
+            },
             'code': 200,
         })
 

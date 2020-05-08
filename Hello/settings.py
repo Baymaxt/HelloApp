@@ -126,6 +126,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# DEFAULT_CHARSET = 'unicode'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -134,6 +136,7 @@ STATIC_URL = '/static/'
 
 
 REST_FRAMEWORK = {
+    # 自动生成接口文档
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PARSER_CLASS': 'rest_framework.parsers.JSONParser',
 }

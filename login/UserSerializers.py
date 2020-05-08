@@ -47,3 +47,7 @@ class UsersRegisterSerializer(serializers.Serializer):
         user.password = password
         user.save()
         return user
+
+
+class UserLoginSerializers(serializers.Serializer):
+    pass
