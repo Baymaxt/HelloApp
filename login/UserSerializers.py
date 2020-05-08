@@ -38,6 +38,7 @@ class UsersRegisterSerializer(serializers.Serializer):
             raise serializers.ValidationError("两次密码不一致")
         return attrs
 
+    # 存进数据库
     def create(self, validated_data):
         user = Users()
         password = validated_data.get('password')

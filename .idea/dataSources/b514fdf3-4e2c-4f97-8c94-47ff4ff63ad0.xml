@@ -1416,7 +1416,7 @@
     <column id="338" parent="247" name="gender">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="339" parent="247" name="portrait">
@@ -1456,7 +1456,7 @@
     </column>
     <column id="346" parent="247" name="password">
       <Position>12</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

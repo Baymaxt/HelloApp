@@ -390,7 +390,7 @@ CREATE TABLE `users` (
   `uid` varchar(20) NOT NULL,
   `username` varchar(50) NOT NULL,
   `age` int(11) DEFAULT NULL,
-  `gender` tinyint(1) NOT NULL,
+  `gender` tinyint(1) DEFAULT '1',
   `portrait` varchar(255) DEFAULT NULL,
   `real_name` varchar(50) DEFAULT NULL,
   `ID_number` varchar(50) DEFAULT NULL,
@@ -398,6 +398,7 @@ CREATE TABLE `users` (
   `follower_amount` int(11) DEFAULT NULL,
   `mutual_follow_amount` int(11) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -409,6 +410,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('123123','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'pbkdf2_sha256$150000$FFGCXbxt2gep$rLwgtIeOOF+1Ts6El7fQQGuD5z+kEjtXolI9jOvENgs=');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -486,4 +488,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-04 20:51:38
+-- Dump completed on 2020-05-08 14:56:37
