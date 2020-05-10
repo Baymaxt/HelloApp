@@ -13,7 +13,7 @@ class Token:
         return serializer.dumps(uid, self.salt)
 
     # 验证token
-    def confirm_validate_token(self, token, expiration=3600):
+    def confirm_validate_token(self, token, expiration=36000):
         serializer = utsr(self.security_key)
         return serializer.loads(token, salt=self.salt, max_age=expiration)
 
