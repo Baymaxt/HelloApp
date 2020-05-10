@@ -14,7 +14,9 @@ from login.util import token_confirm
 class PersonalViews(ListAPIView):
     """
     get:
-    返回‘我的’界面中的用户名，头像，粉丝数，关注数，互相关注数等
+    返回‘我的’界面中的用户名，头像，粉丝数，关注数，互相关注数等<br>
+    需求参数：
+    token
     """
     queryset = Users.objects.all()
     serializer_class = PersonalSerializer

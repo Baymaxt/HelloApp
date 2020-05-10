@@ -20,5 +20,6 @@ from personal_center import views
 
 app_name = 'personal'
 urlpatterns = [
-    path('personal/', views.PersonalViews.as_view(), name='personal')
+    path('personal/', views.PersonalViews.as_view(), name='personal'),
+    path('personal/', include('personal_interaction.urls'))
 ]

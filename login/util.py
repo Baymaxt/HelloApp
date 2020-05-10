@@ -24,4 +24,5 @@ class Token:
         return serializer.loads(token, salt=self.salt)
 
 
+# 单例
 token_confirm = Token(django_settings.SECRET_KEY)
