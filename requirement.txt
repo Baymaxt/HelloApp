@@ -7,10 +7,12 @@ Django==2.2.11
 django-cors-headers==3.2.1
 djangorestframework==3.11.0
 idna==2.9
+itsdangerous==1.1.0
 itypes==1.2.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
 mysqlclient==1.4.6
+Pillow==7.1.2
 pytz==2019.3
 requests==2.23.0
 sqlparse==0.3.1
