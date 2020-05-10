@@ -1,4 +1,4 @@
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import serializers
 from login.models import Users
 
@@ -9,9 +9,10 @@ class UsersSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+# 注册的序列化器
 class UsersRegisterSerializer(serializers.Serializer):
     uid = serializers.CharField(required=True, max_length=20)
-    password = serializers.CharField(min_length=6, max_length=20,
+    password = serializers.CharField(required=True, min_length=6, max_length=20,
                                      error_messages={
                                          'min_length': '最小长度6位',
                                          'max_length': '最大长度20位'
@@ -49,5 +50,22 @@ class UsersRegisterSerializer(serializers.Serializer):
         return user
 
 
-class UserLoginSerializers(serializers.Serializer):
-    pass
+# 登录的序列化器
+class UsersLoginSerializers(serializers.Serializer):
+    uid = serializers.CharField(required=True, max_length=20)
+    password = serializers.CharField(required=True, min_length=6, max_length=20,
+                                     error_messages={
+                                         'min_length': '最小长度6位',
+                                         'max_length': '最大长度20位'
+                                     })
+
+    def validate(self, attrs):
+        uid = attrs.get('uid')
+        password = attrs.get('password')
+        user = Users.objects.filter(uid=uid)
+        if not user.exists():
+            raise serializers.ValidationError({'uid': '用户不存在'})
+        user = user.first()
+        if not check_password(password, user.password):
+            raise serializers.ValidationError({'invalid': '用户名或密码错误'})
+        return attrs
