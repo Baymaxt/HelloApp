@@ -1561,52 +1561,41 @@
       <RefTableName>posts</RefTableName>
       <RefColNames>pid</RefColNames>
     </foreign-key>
-    <column id="366" parent="249" name="wid">
+    <column id="366" parent="249" name="uid">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="367" parent="249" name="uid">
-      <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="368" parent="249" name="balance">
+    <column id="367" parent="249" name="balance">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="368" parent="249" name="coin_amount">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="249" name="coin_amount">
+    <column id="369" parent="249" name="can_withdraw">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="249" name="can_withdraw">
+    <column id="370" parent="249" name="coupon_amount">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="249" name="coupon_amount">
-      <Position>6</Position>
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="372" parent="249" name="uid">
+    <index id="371" parent="249" name="uid">
       <ColNames>uid</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="373" parent="249" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>wid</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="374" parent="249" name="wallets_ibfk_1">
+    <foreign-key id="372" parent="249" name="wallets_ibfk_1">
       <ColNames>uid</ColNames>
       <RefSchemaName>helloapp</RefSchemaName>
       <RefTableName>users</RefTableName>

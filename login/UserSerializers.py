@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import serializers
-from login.models import Users
+from login.models import Users, Wallets
 
 
 class UsersSerializer(serializers.ModelSerializer):
@@ -42,11 +42,14 @@ class UsersRegisterSerializer(serializers.Serializer):
     # 存进数据库
     def create(self, validated_data):
         user = Users()
+        wallet = Wallets()
         password = validated_data.get('password')
         password = make_password(password)  # 对密码加密
         user.uid = validated_data.get('uid')
         user.password = password
         user.save()
+        wallet.uid = user
+        wallet.save()
         return user
 
 

@@ -249,16 +249,15 @@ class Votes(models.Model):
 
 # 钱包表
 class Wallets(models.Model):
-    wid = models.IntegerField(primary_key=True)
     uid = models.ForeignKey(Users, models.DO_NOTHING, db_column='uid')
     # 人民币余额
-    balance = models.IntegerField(blank=True, null=True)
+    balance = models.IntegerField(blank=True, null=True, default=0)
     # 金币余额
-    coin_amount = models.IntegerField(blank=True, null=True)
+    coin_amount = models.IntegerField(blank=True, null=True, default=0)
     # 可提现金币数
-    can_withdraw = models.IntegerField(blank=True, null=True)
+    can_withdraw = models.IntegerField(blank=True, null=True, default=0)
     # 优惠券数
-    coupon_amount = models.IntegerField(blank=True, null=True)
+    coupon_amount = models.IntegerField(blank=True, null=True, default=0)
 
     class Meta:
         managed = False
