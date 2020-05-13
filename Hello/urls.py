@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('chat.urls')),
     path('', include('home.urls')),
     path('', include('quanquan.urls')),
-    path('', include('personal_center.urls')),
+    path('', include('personal.urls')),
     # 接口文档地址
     # MarkupSafe-1.1.1 certifi-2020.4.5.1 chardet-3.0.4 coreapi-2.3.3 coreschema-0.0.4
     # idna-2.9 itypes-1.2.0 jinja2-2.11.2 requests-2.23.0 uritemp

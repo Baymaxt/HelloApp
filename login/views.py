@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -28,10 +28,10 @@ class UserRegisterView(CreateAPIView, ListAPIView):
             return Response({
                 'code': 200,
                 'msg': '注册成功',
-                'data': {'user_id': user.uid}
+                'data': {'uid': user.uid}
             })
         return Response({
-            'code': 105,
+            'code': 422,
             'msg': '注册失败',
             'data': {'info': serializer.errors}
         })
@@ -39,7 +39,6 @@ class UserRegisterView(CreateAPIView, ListAPIView):
     def get(self, request, *args, **kwargs):
         verifyimg = vc.generate()
         code = vc.code
-        print(verifyimg)
         return HttpResponse([verifyimg, code])
 
 

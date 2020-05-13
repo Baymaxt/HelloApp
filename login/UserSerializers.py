@@ -28,7 +28,7 @@ class UsersRegisterSerializer(serializers.Serializer):
         print(attrs)
         user = Users.objects.filter(uid=attrs).first()
         if user:
-            raise serializers.ValidationError("用户名已经被占用")
+            raise serializers.ValidationError("用户账号已经被占用")
         return attrs
 
     # 验证两次密码是否一致

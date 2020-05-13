@@ -10,6 +10,7 @@ from django.db import models
 
 # 身份认证表，主播认证大神认证等
 class Authentications(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid')
     # 认证名称
     authentication_name = models.CharField(max_length=20, blank=True, null=True)
@@ -21,6 +22,7 @@ class Authentications(models.Model):
 
 # 黑名单表
 class Blacklists(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid')
     # 被拉黑的uid
     black_uid = models.CharField(max_length=20)
@@ -51,6 +53,7 @@ class CoinOrders(models.Model):
 
 # 收藏表
 class Collections(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     pid = models.ForeignKey('Posts', models.DO_NOTHING, db_column='pid')
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid')
     collect_time = models.DateTimeField(blank=True, null=True)
@@ -75,6 +78,7 @@ class Comments(models.Model):
 
 # 优惠券表
 class Coupons(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid')
     # 满reach减subtract，reach为优惠门槛
     reach = models.IntegerField()
@@ -113,6 +117,7 @@ class Posts(models.Model):
 
 
 class PostsContent(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     pid = models.ForeignKey(Posts, models.DO_NOTHING, db_column='pid')
     # 文字图片内容
     content = models.CharField(max_length=255, blank=True, null=True)
@@ -124,6 +129,7 @@ class PostsContent(models.Model):
 
 # 礼物表
 class Presents(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid')
     # 送礼的人的uid
     from_uid = models.CharField(max_length=20)
@@ -131,7 +137,7 @@ class Presents(models.Model):
     present_category = models.CharField(max_length=20, blank=True, null=True)
     receive_time = models.DateTimeField(blank=True, null=True)
     # 是否被兑换成金币
-    is_exchange = models.IntegerField(blank=True, null=True)
+    is_exchange = models.IntegerField(blank=True, null=True, default=0)
 
     class Meta:
         managed = False
@@ -139,6 +145,7 @@ class Presents(models.Model):
 
 
 class PresentsCategories(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     # 礼物种类的名称
     present_category = models.CharField(max_length=20, blank=True, null=True)
 
@@ -148,6 +155,7 @@ class PresentsCategories(models.Model):
 
 
 class SoundsContent(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     pid = models.ForeignKey(Posts, models.DO_NOTHING, db_column='pid')
     # 声音文件的路径
     sound = models.CharField(max_length=255, blank=True, null=True)
@@ -159,6 +167,7 @@ class SoundsContent(models.Model):
 
 # 关注表
 class Subscriptions(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid')
     # 关注谁就填谁的uid
     following_uid = models.CharField(max_length=20)
@@ -172,6 +181,7 @@ class Subscriptions(models.Model):
 
 # 个人标签表
 class Tags(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     uid = models.ForeignKey('Users', models.DO_NOTHING, db_column='uid', blank=True, null=True)
     tag_name = models.CharField(max_length=20, blank=True, null=True)
 
@@ -224,6 +234,7 @@ class Users(models.Model):
 
 # 投票表
 class Votes(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     pid = models.ForeignKey(Posts, models.DO_NOTHING, db_column='pid')
     # 投票主题
     topic = models.CharField(max_length=255, blank=True, null=True)
@@ -249,6 +260,7 @@ class Votes(models.Model):
 
 # 钱包表
 class Wallets(models.Model):
+    id = models.IntegerField(primary_key=True, auto_created=True)
     uid = models.ForeignKey(Users, models.DO_NOTHING, db_column='uid')
     # 人民币余额
     balance = models.IntegerField(blank=True, null=True, default=0)
@@ -257,7 +269,7 @@ class Wallets(models.Model):
     # 可提现金币数
     can_withdraw = models.IntegerField(blank=True, null=True, default=0)
     # 优惠券数
-    coupon_amount = models.IntegerField(blank=True, null=True, default=0)
+    coupons_amount = models.IntegerField(blank=True, null=True, default=0)
 
     class Meta:
         managed = False

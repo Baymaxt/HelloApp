@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'login',
     'chat',
     'home',
-    'personal_center',
+    'personal',
     'quanquan',
 ]
 

@@ -20,7 +20,7 @@ from personal_tools import views
 app_name = 'personal_tools'
 urlpatterns = [
     path('wallet/', views.MyWalletView.as_view(), name='wallet'),
-    path('wallet/', views.MyOrderView.as_view(), name='order'),
-    path('wallet/', views.MyPresentView.as_view(), name='present'),
-    path('wallet/', views.MyCouponView.as_view(), name='coupon'),
+    path('orders/', views.MyOrderView.as_view(), name='order'),
+    path('presents/', views.MyPresentView.as_view(), name='present'),
+    path('coupons/', views.MyCouponView.as_view(), name='coupon'),
 ]
