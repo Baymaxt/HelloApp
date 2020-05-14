@@ -1,9 +1,8 @@
 from django.shortcuts import render
 
-
 # Create your views here.
 from rest_framework.exceptions import APIException
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
 
 from login.models import Users
@@ -11,7 +10,7 @@ from personal.PersonalSerializers import PersonalSerializer
 from login.util import token_confirm
 
 
-class PersonalViews(ListAPIView):
+class PersonalViews(ListAPIView, CreateAPIView):
     """
     get:
     返回‘我的’界面中的用户名，头像，粉丝数，关注数，互相关注数等<br>
@@ -22,9 +21,8 @@ class PersonalViews(ListAPIView):
     serializer_class = PersonalSerializer
 
     def get(self, request, *args, **kwargs):
-        # 获取token
-        token = request.query_params.get('token')
-        user = self.confirm(token)
+        # 检查token，获取用户对象
+        user = self.confirm(request)
         # 返回数据
         return Response({
             'code': 200,
@@ -39,11 +37,12 @@ class PersonalViews(ListAPIView):
         })
 
     # 检验token，检查用户是否存在
-    def confirm(self, token):
+    def confirm(self, request):
         """
-        :param token: 将resquest中的token读出来传入
+        :param request: 将resquest传入
         :return: 返回对应的user对象
         """
+        token = request.query_params.get('token')
         try:
             uid = token_confirm.confirm_validate_token(token)
         except APIException as e:
@@ -66,7 +65,7 @@ class PersonalViews(ListAPIView):
         # 返回一个Users的对象
         return user
 
-    def gef_data(self, dataobj):
+    def get_data(self, dataobj):
         """
         可重写此方法用来获取查询结果集中的数据，以下代码仅做示例
         data = {}
@@ -86,4 +85,17 @@ class PersonalViews(ListAPIView):
         :param dataobj: queryset对象
         :return: query中的数据构成的字典
         """
-        pass
+        data = {}
+        i = 0
+        while i < len(dataobj):
+            data.update({
+                'user' + str(i): {
+                    'uid': dataobj[i].uid,
+                    'username': dataobj[i].username,
+                    'gender': dataobj[i].gender,
+                    'portrait': dataobj[i].portrait,
+                    'age': dataobj[i].age,
+                }
+            })
+            i = i + 1
+        return data

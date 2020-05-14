@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from personal import views
+from personal_sub_black import views
 
-app_name = 'personal'
+app_name = 'pensonal_sub_black'
 urlpatterns = [
-    path('personal/', views.PersonalViews.as_view(), name='personal'),
-    path('personal/', include('personal_interaction.urls')),
-    path('personal/', include('personal_tools.urls')),
-    path('personal/', include('personal_sub_black.urls')),
+    path('following/', views.MyFollowingViews.as_view(), name='myfollowing'),
+    path('follower/', views.MyFollowerViews.as_view(), name='myfollower'),
+    path('mutualfollow/', views.MyMutualFollowViews.as_view(), name='mymutualfollow'),
+    path('blacklist/', views.MyBlacklistViews.as_view(), name='myblacklist'),
 ]

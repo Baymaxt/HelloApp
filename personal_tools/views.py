@@ -17,14 +17,12 @@ class MyWalletView(PersonalViews):
     serializer_class = MyWalletSerializer
 
     def get(self, request, *args, **kwargs):
-        # 获取token
-        token = request.query_params.get('token')
-        # 检查token
-        user = self.confirm(token)
+        # 检查token，获取用户对象
+        user = self.confirm(request)
         wallet = Wallets.objects.get(uid=user.uid)
         return Response({
             'code': 200,
-            'msg': '',
+            'msg': '我的钱包',
             'data': {
                 'balance': wallet.balance,
                 'coin_amount': wallet.coin_amount,
@@ -39,15 +37,13 @@ class MyOrderView(PersonalViews):
     serializer_class = MyOrderSerializer
 
     def get(self, request, *args, **kwargs):
-        # 获取token
-        token = request.query_params.get('token')
-        # 检查token
-        user = self.confirm(token)
+        # 检查token，获取用户对象
+        user = self.confirm(request)
         orders = CoinOrders.objects.filter(uid=user.uid)
         data = self.get_data(orders)
         return Response({
             'code': 200,
-            'msg': '',
+            'msg': '我的订单',
             'data': data
         })
 
@@ -73,15 +69,13 @@ class MyPresentView(PersonalViews):
     serializer_class = MyPresentSerializer
 
     def get(self, request, *args, **kwargs):
-        # 获取token
-        token = request.query_params.get('token')
-        # 检查token
-        user = self.confirm(token)
+        # 检查token，获取用户对象
+        user = self.confirm(request)
         presents = Presents.objects.filter(uid=user.uid)
         data = self.get_data(presents)
         return Response({
             'code': 200,
-            'msg': '',
+            'msg': '我的礼物',
             'data': data
         })
 
@@ -90,7 +84,7 @@ class MyPresentView(PersonalViews):
         i = 0
         while i < len(presents):
             data.update({
-                'order' + str(i): {
+                'present' + str(i): {
                     'uid': presents[i].uid.uid,
                     'from_uid': presents[i].from_uid,
                     'receive_time': str(presents[i].receive_time),
@@ -106,15 +100,13 @@ class MyCouponView(PersonalViews):
     serializer_class = MyCouponSerializer
 
     def get(self, request, *args, **kwargs):
-        # 获取token
-        token = request.query_params.get('token')
-        # 检查token
-        user = self.confirm(token)
+        # 检查token，获取用户对象
+        user = self.confirm(request)
         coupons = Coupons.objects.filter(uid=user.uid)
         data = self.get_data(coupons)
         return Response({
             'code': 200,
-            'msg': '',
+            'msg': '优惠中心',
             'data': data
         })
 
@@ -123,7 +115,7 @@ class MyCouponView(PersonalViews):
         i = 0
         while i < len(coupons):
             data.update({
-                'order' + str(i): {
+                'coupon' + str(i): {
                     'uid': coupons[i].uid.uid,
                     'reach': coupons[i].reach,
                     'subtract': coupons[i].subtract,
