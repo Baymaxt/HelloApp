@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from itsdangerous import SignatureExpired
 from rest_framework.exceptions import APIException
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
@@ -45,10 +46,10 @@ class PersonalViews(ListAPIView, CreateAPIView):
         token = request.query_params.get('token')
         try:
             uid = token_confirm.confirm_validate_token(token)
-        except APIException as e:
+        except SignatureExpired as e:
             print(e)
             return Response({
-                'code': 1006,
+                'code': 422,
                 'msg': 'token失效',
                 'data': {}
             })
@@ -58,7 +59,7 @@ class PersonalViews(ListAPIView, CreateAPIView):
         except APIException as e:
             print(e)
             return Response({
-                'code': 1006,
+                'code': 422,
                 'msg': '用户不存在',
                 'data': {}
             })
