@@ -56,7 +56,7 @@ CREATE TABLE `blacklists` (
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   CONSTRAINT `blacklists_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +65,7 @@ CREATE TABLE `blacklists` (
 
 LOCK TABLES `blacklists` WRITE;
 /*!40000 ALTER TABLE `blacklists` DISABLE KEYS */;
+INSERT INTO `blacklists` VALUES ('xiutaooooo','1212',1,1),('1212','xiutaooooo',1,6);
 /*!40000 ALTER TABLE `blacklists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,7 +337,7 @@ CREATE TABLE `subscriptions` (
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -345,6 +346,7 @@ CREATE TABLE `subscriptions` (
 
 LOCK TABLES `subscriptions` WRITE;
 /*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
+INSERT INTO `subscriptions` VALUES ('1212','123123',1,1),('123123','1212',1,2),('1212','xiutaooooo',0,3),('xiutaooooo','123123',0,4),('Jay2333','1212',0,5);
 /*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,9 +419,9 @@ CREATE TABLE `users` (
   `portrait` varchar(255) DEFAULT NULL,
   `real_name` varchar(50) DEFAULT NULL,
   `ID_number` varchar(50) DEFAULT NULL,
-  `following_amount` int(11) DEFAULT NULL,
-  `follower_amount` int(11) DEFAULT NULL,
-  `mutual_follow_amount` int(11) DEFAULT NULL,
+  `following_amount` int(11) DEFAULT '0',
+  `follower_amount` int(11) DEFAULT '0',
+  `mutual_follow_amount` int(11) DEFAULT '0',
   `location` varchar(255) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`uid`),
@@ -433,7 +435,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('1212','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'pbkdf2_sha256$150000$h7axnxxycSKC$pSm7rtRD7AZS3004HzWVAg+HVMhM1XCRfAHKKZ44SQc='),('123123','xiusensei',22,1,'kjtdhgsfdgfxghxfgrdhrt',NULL,NULL,735,525,121,NULL,'pbkdf2_sha256$150000$FFGCXbxt2gep$rLwgtIeOOF+1Ts6El7fQQGuD5z+kEjtXolI9jOvENgs='),('xiutaooooo','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'pbkdf2_sha256$150000$erpRrBb3C8mh$xtfaH3FWHw5PWHboOHWxXxgm+03Bpo2AuXwIDuL6e6U=');
+INSERT INTO `users` VALUES ('1212','test',23,0,'246jdfgntil69po56u5yfe',NULL,NULL,2,2,1,NULL,'pbkdf2_sha256$150000$h7axnxxycSKC$pSm7rtRD7AZS3004HzWVAg+HVMhM1XCRfAHKKZ44SQc='),('123123','xiusensei',22,1,'kjtdhgsfdgfxghxfgrdhrt',NULL,NULL,1,1,1,NULL,'pbkdf2_sha256$150000$FFGCXbxt2gep$rLwgtIeOOF+1Ts6El7fQQGuD5z+kEjtXolI9jOvENgs='),('Jay2333','zhoujielun',18,1,'aisuefhi28hfksjbdkv',NULL,NULL,1,0,0,NULL,'pbkdf2_sha256$150000$N2Y6dc08Hunx$Q6yY8zA1uN/Js+VAZ8whqFJIIkC/ih8JWul+gRDad2U='),('xiutaooooo','xiutao',16,0,'srhthfsdfgsergsdga24364',NULL,NULL,1,1,0,NULL,'pbkdf2_sha256$150000$erpRrBb3C8mh$xtfaH3FWHw5PWHboOHWxXxgm+03Bpo2AuXwIDuL6e6U='),('zhaobenshan','赵本山',29,1,NULL,NULL,NULL,0,0,0,NULL,'pbkdf2_sha256$150000$uz0elgUzsq8d$fepCVVGWbP5zNohVWOXoOjEcaIDeuhrmRraZ79s0UvA=');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -492,7 +494,7 @@ CREATE TABLE `wallets` (
   PRIMARY KEY (`id`),
   KEY `wallets_users_uid_fk` (`uid`),
   CONSTRAINT `wallets_users_uid_fk` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -501,7 +503,7 @@ CREATE TABLE `wallets` (
 
 LOCK TABLES `wallets` WRITE;
 /*!40000 ALTER TABLE `wallets` DISABLE KEYS */;
-INSERT INTO `wallets` VALUES ('123123',0,0,0,0,1),('xiutaooooo',0,0,0,0,3),('1212',0,0,0,0,4);
+INSERT INTO `wallets` VALUES ('123123',0,0,0,0,1),('xiutaooooo',0,0,0,0,3),('1212',0,0,0,0,4),('Jay2333',0,0,0,0,5),('zhaobenshan',0,0,0,0,6);
 /*!40000 ALTER TABLE `wallets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -514,4 +516,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-13 21:55:58
+-- Dump completed on 2020-05-15 15:22:08
