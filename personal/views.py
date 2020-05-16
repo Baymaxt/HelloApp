@@ -43,7 +43,10 @@ class PersonalViews(ListAPIView, CreateAPIView):
         :param request: 将resquest传入
         :return: 返回对应的user对象
         """
-        token = request.query_params.get('token')
+        if request.query_params.get('token') is not None:
+            token = request.query_params.get('token')
+        else:
+            token = request.data.get('token')
         try:
             uid = token_confirm.confirm_validate_token(token)
         except SignatureExpired as e:

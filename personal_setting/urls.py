@@ -16,13 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from personal import views
+from personal_setting import views
 
-app_name = 'personal'
+app_name = 'personal_setting'
 urlpatterns = [
-    path('personal/', views.PersonalViews.as_view(), name='personal'),
-    path('personal/', include('personal_interaction.urls')),
-    path('personal/', include('personal_tools.urls')),
-    path('personal/', include('personal_sub_black.urls')),
-    path('personal/', include('personal_setting.urls')),
+    path('setting/', views.PersonalSettingViews.as_view(), name='setting'),
 ]
