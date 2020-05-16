@@ -134,7 +134,7 @@ class MyBlacklistViews(PersonalViews):
             data = self.get_data(users)
             return Response({
                 'code': '200',
-                'msg': '我的关注',
+                'msg': '黑名单',
                 'data': data
             })
 
