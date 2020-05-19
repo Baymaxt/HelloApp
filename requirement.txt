@@ -5,6 +5,7 @@ coreapi==2.3.3
 coreschema==0.0.4
 Django==2.2.11
 django-cors-headers==3.2.1
+django-qiniu-storage==2.3.1
 djangorestframework==3.11.0
 idna==2.9
 itsdangerous==1.1.0
@@ -14,7 +15,9 @@ MarkupSafe==1.1.1
 mysqlclient==1.4.6
 Pillow==7.1.2
 pytz==2019.3
+qiniu==7.2.8
 requests==2.23.0
+six==1.14.0
 sqlparse==0.3.1
 uritemplate==3.0.1
 urllib3==1.25.9

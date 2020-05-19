@@ -170,3 +170,23 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+# # 七牛云配置
+# QINIU_ACCESS_KEY = 'P0ZKoI4ZKmFw9i7Ac-AtnZrOruXZitKgk_cxikS7'
+# # AccessKey
+# QINIU_SECRET_KEY = 'Fg_e77wPpy3wfi9-KkXJj9UVAOiiyMPqna0Q2Q2i'
+# # Secret
+# QINIU_BUCKET_NAME = 'xiutao1'
+# # 用来存放文件的七牛空间(bucket)的名字
+# QINIU_BUCKET_DOMAIN = 'qagn0wg13.bkt.clouddn.com/'
+# # 七牛空间(bucket)的域名，别遗漏了后面的/
+# DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuStorage'
+# # 只用七牛托管动态生成的文件（例如用户上传的文件）
+# QINIU_SECURE_URL = False
+# # 使用http
+#
+# PREFIX_URL = 'http://'
+# # 文件系统更改
+# MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN
+# MEDIA_ROOT = 'media/'
+#
