@@ -214,11 +214,11 @@ class Users(models.Model):
     email = models.CharField(max_length=50)
     gender = models.IntegerField()
     # 头像路径
-    portrait = models.CharField(max_length=255, blank=True, null=True)
+    portrait = models.ImageField()
     # 若进行了实名认证则填入真实姓名
     real_name = models.CharField(max_length=50, blank=True, null=True)
     # 若进行了实名认证则填入身份证号
-    id_number = models.CharField(db_column='ID_number', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    id_number = models.CharField(db_column='ID_number', max_length=50, blank=True, null=True)
     # 关注数
     following_amount = models.IntegerField(blank=True, null=True)
     # 粉丝数
