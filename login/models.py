@@ -102,6 +102,8 @@ class Posts(models.Model):
     # 3为声音，内容在SoundsContent表中
     # 4为投票，内容在Votes表中
     post_category = models.IntegerField()
+    # 动态内容
+    post_content = models.CharField(max_length=255)
     # 评论数
     comment_amount = models.IntegerField(blank=True, null=True)
     # 发表时间
@@ -116,15 +118,15 @@ class Posts(models.Model):
         db_table = 'posts'
 
 
-class PostsContent(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True)
-    pid = models.ForeignKey(Posts, models.DO_NOTHING, db_column='pid')
-    # 文字图片内容
-    content = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'posts_content'
+# class PostsContent(models.Model):
+#     id = models.IntegerField(primary_key=True, auto_created=True)
+#     pid = models.ForeignKey(Posts, models.DO_NOTHING, db_column='pid')
+#     # 文字图片内容
+#     content = models.CharField(max_length=255, blank=True, null=True)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'posts_content'
 
 
 # 礼物表
@@ -154,15 +156,15 @@ class PresentsCategories(models.Model):
         db_table = 'presents_categories'
 
 
-class SoundsContent(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True)
-    pid = models.ForeignKey(Posts, models.DO_NOTHING, db_column='pid')
-    # 声音文件的路径
-    sound = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'sounds_content'
+# class SoundsContent(models.Model):
+#     id = models.IntegerField(primary_key=True, auto_created=True)
+#     pid = models.ForeignKey(Posts, models.DO_NOTHING, db_column='pid')
+#     # 声音文件的路径
+#     sound = models.CharField(max_length=255, blank=True, null=True)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'sounds_content'
 
 
 # 关注表
@@ -211,13 +213,14 @@ class Users(models.Model):
     password = models.CharField(max_length=20, null=False)
     username = models.CharField(max_length=50)
     age = models.IntegerField(blank=True, null=True)
+    email = models.CharField(max_length=50)
     gender = models.IntegerField()
     # 头像路径
-    portrait = models.CharField(max_length=255, blank=True, null=True)
+    portrait = models.ImageField()
     # 若进行了实名认证则填入真实姓名
     real_name = models.CharField(max_length=50, blank=True, null=True)
     # 若进行了实名认证则填入身份证号
-    id_number = models.CharField(db_column='ID_number', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    id_number = models.CharField(db_column='ID_number', max_length=50, blank=True, null=True)
     # 关注数
     following_amount = models.IntegerField(blank=True, null=True)
     # 粉丝数
