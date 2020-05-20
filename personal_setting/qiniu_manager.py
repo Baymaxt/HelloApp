@@ -7,17 +7,18 @@ class QiniuManager:
     __secret_key = 'Fg_e77wPpy3wfi9-KkXJj9UVAOiiyMPqna0Q2Q2i'
     __bucket_name = 'xiutao1'
 
-    def upload(self, filename, file):
+    def upload(self, request, filename):
         """
         上传文件
         请将文件名拼装好传过来，一律使用文件类型+uid的方式保存比如uid为1212的用户上传的头像文件名就是portrait1212.png
         声音文件sound+uid
         文章post+uid
         :param filename: 上传后保存的文件名
-        :param file: 文件
+        :param request: request请求
         :return: 带文件名的完整路径
         """
         key = filename
+        file = request.FILES.get('file').read()
         q = Auth(self.__access_key, self.__secret_key)
         token = q.upload_token(self.__bucket_name, key, 3600)
         ret, info = put_data(token, key, file)

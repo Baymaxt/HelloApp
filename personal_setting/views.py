@@ -11,6 +11,7 @@ class PersonalSettingViews(PersonalViews):
 
     def post(self, request, *args, **kwargs):
         user = self.confirm(request)
+        # 如果没有拿到uid，则证明token不正确或过期了，此时user的值是一条错误信息
         if user.uid is None:
             return user
         if request.data.get('username') is not None:
@@ -33,6 +34,5 @@ class PersonalSettingViews(PersonalViews):
         })
 
     def get_portrait(self, request, uid):
-        portrait = request.FILES.get('portrait').read()
         picname = 'portrait' + uid
-        return qm.upload(picname, portrait)
+        return qm.upload(request, picname)

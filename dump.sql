@@ -199,13 +199,14 @@ CREATE TABLE `posts` (
   `post_category` int(11) NOT NULL,
   `comment_amount` int(11) DEFAULT '0',
   `post_time` datetime DEFAULT NULL,
-  `forward_amount` int(11) DEFAULT NULL,
+  `forward_amount` int(11) DEFAULT '0',
   `origin` int(11) DEFAULT NULL,
+  `post_content` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`pid`),
   UNIQUE KEY `pid` (`pid`),
   KEY `uid` (`uid`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,33 +215,8 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (6,'1212',1,NULL,'2020-05-20 13:21:25',NULL,NULL,'http://qagn0wg13.bkt.clouddn.com/post6');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `posts_content`
---
-
-DROP TABLE IF EXISTS `posts_content`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `posts_content` (
-  `pid` int(11) NOT NULL,
-  `content` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
-  KEY `pid` (`pid`),
-  CONSTRAINT `posts_content_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `posts` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `posts_content`
---
-
-LOCK TABLES `posts_content` WRITE;
-/*!40000 ALTER TABLE `posts_content` DISABLE KEYS */;
-/*!40000 ALTER TABLE `posts_content` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -297,32 +273,6 @@ LOCK TABLES `presents_categories` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `sounds_content`
---
-
-DROP TABLE IF EXISTS `sounds_content`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sounds_content` (
-  `pid` int(11) NOT NULL,
-  `sound` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
-  KEY `pid` (`pid`),
-  CONSTRAINT `sounds_content_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `posts` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sounds_content`
---
-
-LOCK TABLES `sounds_content` WRITE;
-/*!40000 ALTER TABLE `sounds_content` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sounds_content` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `subscriptions`
 --
 
@@ -337,7 +287,7 @@ CREATE TABLE `subscriptions` (
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -424,6 +374,7 @@ CREATE TABLE `users` (
   `mutual_follow_amount` int(11) DEFAULT '0',
   `location` varchar(255) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -435,7 +386,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('1212','test',23,0,'246jdfgntil69po56u5yfe',NULL,NULL,2,2,1,NULL,'pbkdf2_sha256$150000$h7axnxxycSKC$pSm7rtRD7AZS3004HzWVAg+HVMhM1XCRfAHKKZ44SQc='),('123123','xiusensei',22,1,'kjtdhgsfdgfxghxfgrdhrt',NULL,NULL,1,1,1,NULL,'pbkdf2_sha256$150000$FFGCXbxt2gep$rLwgtIeOOF+1Ts6El7fQQGuD5z+kEjtXolI9jOvENgs='),('Jay2333','zhoujielun',18,1,'aisuefhi28hfksjbdkv',NULL,NULL,1,0,0,NULL,'pbkdf2_sha256$150000$N2Y6dc08Hunx$Q6yY8zA1uN/Js+VAZ8whqFJIIkC/ih8JWul+gRDad2U='),('xiutaooooo','xiutao',16,0,'srhthfsdfgsergsdga24364',NULL,NULL,1,1,0,NULL,'pbkdf2_sha256$150000$erpRrBb3C8mh$xtfaH3FWHw5PWHboOHWxXxgm+03Bpo2AuXwIDuL6e6U='),('zhaobenshan','赵本山',29,1,NULL,NULL,NULL,0,0,0,NULL,'pbkdf2_sha256$150000$uz0elgUzsq8d$fepCVVGWbP5zNohVWOXoOjEcaIDeuhrmRraZ79s0UvA=');
+INSERT INTO `users` VALUES ('1212','test',3,0,'http://qagn0wg13.bkt.clouddn.com/portrait1212',NULL,NULL,2,2,1,NULL,'pbkdf2_sha256$150000$h7axnxxycSKC$pSm7rtRD7AZS3004HzWVAg+HVMhM1XCRfAHKKZ44SQc=',NULL),('123123','xiusensei',22,1,'kjtdhgsfdgfxghxfgrdhrt',NULL,NULL,1,1,1,NULL,'pbkdf2_sha256$150000$FFGCXbxt2gep$rLwgtIeOOF+1Ts6El7fQQGuD5z+kEjtXolI9jOvENgs=',NULL),('Jay2333','zhoujielun',18,1,'aisuefhi28hfksjbdkv',NULL,NULL,1,0,0,NULL,'pbkdf2_sha256$150000$N2Y6dc08Hunx$Q6yY8zA1uN/Js+VAZ8whqFJIIkC/ih8JWul+gRDad2U=',NULL),('xiutaooooo','xiutao',16,0,'srhthfsdfgsergsdga24364',NULL,NULL,1,1,0,NULL,'pbkdf2_sha256$150000$erpRrBb3C8mh$xtfaH3FWHw5PWHboOHWxXxgm+03Bpo2AuXwIDuL6e6U=',NULL),('zhaobenshan','赵本山',29,1,NULL,NULL,NULL,0,0,0,NULL,'pbkdf2_sha256$150000$uz0elgUzsq8d$fepCVVGWbP5zNohVWOXoOjEcaIDeuhrmRraZ79s0UvA=',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -516,4 +467,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-15 15:22:08
+-- Dump completed on 2020-05-20 21:26:33
