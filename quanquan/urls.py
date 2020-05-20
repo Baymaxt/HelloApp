@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from quanquan import views
+
 app_name = 'quanquan'
 urlpatterns = [
-
+    path('posts/', views.PostsView.as_view(), name='posts')
 ]
