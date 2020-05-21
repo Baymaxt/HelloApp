@@ -1,7 +1,16 @@
 /venv/
 /.idea/
 /.vscode/
-
+/Hello/__pycache__/
+/login/__pycache__/
+/personal/__pycache__/
+/personal_sub_black/__pycache__/
+/personal_setting/__pycache__/
+/interaction/__pycache__/
+/chat/__pycache__/
+/home/__pycache__/
+/personal_tools/__pycache__/
+/quanquan/__pycache__/
 /__pycache__/
 */__pycache__
 *.py[cod]
