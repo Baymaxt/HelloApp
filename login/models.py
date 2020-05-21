@@ -105,11 +105,11 @@ class Posts(models.Model):
     # 动态内容
     post_content = models.CharField(max_length=255)
     # 评论数
-    comment_amount = models.IntegerField(blank=True, null=True)
+    comment_amount = models.IntegerField(blank=True, null=True, default=0)
     # 发表时间
     post_time = models.DateTimeField(blank=True, null=True)
     # 转发数
-    forward_amount = models.IntegerField(blank=True, null=True)
+    forward_amount = models.IntegerField(blank=True, null=True, default=0)
     # 若为转发的动态，则填入原动态uid
     origin = models.IntegerField(blank=True, null=True)
 
@@ -216,7 +216,7 @@ class Users(models.Model):
     email = models.CharField(max_length=50)
     gender = models.IntegerField()
     # 头像路径
-    portrait = models.ImageField()
+    portrait = models.CharField(max_length=255)
     # 若进行了实名认证则填入真实姓名
     real_name = models.CharField(max_length=50, blank=True, null=True)
     # 若进行了实名认证则填入身份证号
@@ -244,17 +244,17 @@ class Votes(models.Model):
     # 选项1
     option1 = models.CharField(max_length=100, blank=True, null=True)
     # 选项1的得票数，后边以此类对，最多6个选项
-    option1_amount = models.IntegerField(blank=True, null=True)
+    option1_amount = models.IntegerField(blank=True, null=True, default=0)
     option2 = models.CharField(max_length=100, blank=True, null=True)
-    option2_amount = models.IntegerField(blank=True, null=True)
+    option2_amount = models.IntegerField(blank=True, null=True, default=0)
     option3 = models.CharField(max_length=100, blank=True, null=True)
-    option3_amount = models.IntegerField(blank=True, null=True)
+    option3_amount = models.IntegerField(blank=True, null=True, default=0)
     option4 = models.CharField(max_length=100, blank=True, null=True)
-    option4_amount = models.IntegerField(blank=True, null=True)
+    option4_amount = models.IntegerField(blank=True, null=True, default=0)
     option5 = models.CharField(max_length=100, blank=True, null=True)
-    option5_amount = models.IntegerField(blank=True, null=True)
+    option5_amount = models.IntegerField(blank=True, null=True, default=0)
     option6 = models.CharField(max_length=100, blank=True, null=True)
-    option6_amount = models.IntegerField(blank=True, null=True)
+    option6_amount = models.IntegerField(blank=True, null=True, default=0)
 
     class Meta:
         managed = False

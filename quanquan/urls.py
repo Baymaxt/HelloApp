@@ -20,5 +20,6 @@ from quanquan import views
 
 app_name = 'quanquan'
 urlpatterns = [
-    path('posts/', views.PostsView.as_view(), name='posts')
+    path('quanquan/posts/', views.PostsViews.as_view(), name='posts'),
+    path('quanquan/', views.QuanQuanViews.as_view(), name='posts')
 ]
