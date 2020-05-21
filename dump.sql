@@ -206,7 +206,7 @@ CREATE TABLE `posts` (
   UNIQUE KEY `pid` (`pid`),
   KEY `uid` (`uid`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (6,'1212',1,NULL,'2020-05-20 13:21:25',NULL,NULL,'http://qagn0wg13.bkt.clouddn.com/post6');
+INSERT INTO `posts` VALUES (6,'1212',1,NULL,'2020-05-20 13:21:25',0,NULL,'http://qagn0wg13.bkt.clouddn.com/post6'),(7,'123123',2,0,'2020-05-21 06:53:04',0,NULL,'http://qagn0wg13.bkt.clouddn.com/post6'),(8,'xiutaooooo',3,0,'2020-05-11 06:54:24',0,NULL,'http://qagn0wg13.bkt.clouddn.com/post6'),(15,'1212',4,0,'2020-05-21 07:36:06',0,NULL,'');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,7 +386,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('1212','test',3,0,'http://qagn0wg13.bkt.clouddn.com/portrait1212',NULL,NULL,2,2,1,NULL,'pbkdf2_sha256$150000$h7axnxxycSKC$pSm7rtRD7AZS3004HzWVAg+HVMhM1XCRfAHKKZ44SQc=',NULL),('123123','xiusensei',22,1,'kjtdhgsfdgfxghxfgrdhrt',NULL,NULL,1,1,1,NULL,'pbkdf2_sha256$150000$FFGCXbxt2gep$rLwgtIeOOF+1Ts6El7fQQGuD5z+kEjtXolI9jOvENgs=',NULL),('Jay2333','zhoujielun',18,1,'aisuefhi28hfksjbdkv',NULL,NULL,1,0,0,NULL,'pbkdf2_sha256$150000$N2Y6dc08Hunx$Q6yY8zA1uN/Js+VAZ8whqFJIIkC/ih8JWul+gRDad2U=',NULL),('xiutaooooo','xiutao',16,0,'srhthfsdfgsergsdga24364',NULL,NULL,1,1,0,NULL,'pbkdf2_sha256$150000$erpRrBb3C8mh$xtfaH3FWHw5PWHboOHWxXxgm+03Bpo2AuXwIDuL6e6U=',NULL),('zhaobenshan','赵本山',29,1,NULL,NULL,NULL,0,0,0,NULL,'pbkdf2_sha256$150000$uz0elgUzsq8d$fepCVVGWbP5zNohVWOXoOjEcaIDeuhrmRraZ79s0UvA=',NULL);
+INSERT INTO `users` VALUES ('1212','test',3,0,'http://qagn0wg13.bkt.clouddn.com/portrait1212',NULL,NULL,2,2,1,NULL,'pbkdf2_sha256$150000$h7axnxxycSKC$pSm7rtRD7AZS3004HzWVAg+HVMhM1XCRfAHKKZ44SQc=',NULL),('123123','xiusensei',22,1,'http://qagn0wg13.bkt.clouddn.com/portrait1212',NULL,NULL,1,1,1,NULL,'pbkdf2_sha256$150000$FFGCXbxt2gep$rLwgtIeOOF+1Ts6El7fQQGuD5z+kEjtXolI9jOvENgs=',NULL),('Jay2333','zhoujielun',18,1,'http://qagn0wg13.bkt.clouddn.com/portrait1212',NULL,NULL,1,0,0,NULL,'pbkdf2_sha256$150000$N2Y6dc08Hunx$Q6yY8zA1uN/Js+VAZ8whqFJIIkC/ih8JWul+gRDad2U=',NULL),('xiutaooooo','xiutao',16,0,'http://qagn0wg13.bkt.clouddn.com/portrait1212',NULL,NULL,1,1,0,NULL,'pbkdf2_sha256$150000$erpRrBb3C8mh$xtfaH3FWHw5PWHboOHWxXxgm+03Bpo2AuXwIDuL6e6U=',NULL),('zhaobenshan','赵本山',29,1,'http://qagn0wg13.bkt.clouddn.com/portrait1212',NULL,NULL,0,0,0,NULL,'pbkdf2_sha256$150000$uz0elgUzsq8d$fepCVVGWbP5zNohVWOXoOjEcaIDeuhrmRraZ79s0UvA=',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -416,7 +416,7 @@ CREATE TABLE `votes` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   CONSTRAINT `votes_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `posts` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -425,6 +425,7 @@ CREATE TABLE `votes` (
 
 LOCK TABLES `votes` WRITE;
 /*!40000 ALTER TABLE `votes` DISABLE KEYS */;
+INSERT INTO `votes` VALUES (15,'你喜欢什么音乐','爵士',0,'古典',0,'摇滚',0,'民谣',0,NULL,NULL,NULL,NULL,6);
 /*!40000 ALTER TABLE `votes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -467,4 +468,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-20 21:26:33
+-- Dump completed on 2020-05-21 22:59:25
